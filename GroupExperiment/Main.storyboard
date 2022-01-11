@@ -615,6 +615,9 @@
                                             <fontDescription key="titleFontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                                             <color key="baseBackgroundColor" red="0.37564271690000001" green="0.1238887087" blue="0.20784661169999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="DQM-6c-kCy" kind="show" id="xMm-xF-ltV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYI-DY-XcA">
                                         <rect key="frame" x="10" y="155" width="150" height="29"/>
@@ -1687,7 +1690,7 @@ History</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ref ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQq-Iq-L5l">
-                                                    <rect key="frame" x="25" y="141" width="79" height="15"/>
+                                                    <rect key="frame" x="25" y="141" width="74" height="15"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1723,7 +1726,7 @@ History</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nce-qb-HZJ">
-                                                    <rect key="frame" x="114" y="141" width="32" height="15"/>
+                                                    <rect key="frame" x="109" y="141" width="32" height="15"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1737,7 +1740,7 @@ History</string>
                                                 <constraint firstItem="G8X-GA-QdS" firstAttribute="leading" secondItem="5GI-17-xgy" secondAttribute="trailing" constant="10" id="JpL-Mg-OWI"/>
                                                 <constraint firstItem="nce-qb-HZJ" firstAttribute="leading" secondItem="UQq-Iq-L5l" secondAttribute="trailing" constant="10" id="MhE-B6-fWl"/>
                                                 <constraint firstItem="5GI-17-xgy" firstAttribute="top" secondItem="gKZ-Tg-k9H" secondAttribute="bottom" constant="10" id="OP3-Un-Tl3"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="UQq-Iq-L5l" secondAttribute="trailing" constant="250" id="OiZ-Xb-YMz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="UQq-Iq-L5l" secondAttribute="trailing" constant="255" id="OiZ-Xb-YMz"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ElE-jq-716" secondAttribute="trailing" constant="200" id="Rne-Wh-51Z"/>
                                                 <constraint firstItem="8m8-M9-Uk9" firstAttribute="top" secondItem="uhZ-kh-UJg" secondAttribute="bottom" constant="10" id="VIv-Yx-AxI"/>
                                                 <constraint firstItem="EHJ-eh-XPG" firstAttribute="top" secondItem="izx-3K-4xn" secondAttribute="bottom" constant="10" id="Vae-xJ-vtu"/>
@@ -1835,7 +1838,7 @@ History</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fmi-tn-i6H"/>
+        <segue reference="evT-j5-kqe"/>
         <segue reference="Fze-ZS-4F3"/>
         <segue reference="uBB-s6-4ZD"/>
         <segue reference="CdM-By-Ka3"/>

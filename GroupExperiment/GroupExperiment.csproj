@@ -313,7 +313,6 @@
         <Compile Include="Modules\Models\BeneficiaryGroup.cs" />
         <Compile Include="Modules\Utils\MyUtils.cs" />
         <Compile Include="Modules\Models\Recipient.cs" />
-        <Compile Include="Modules\Utils\NetworkUtil.cs" />
         <Compile Include="Modules\Models\MyPickerModel.cs" />
         <Compile Include="Controllers\GetStartedController.cs" />
         <Compile Include="Controllers\GetStartedController.designer.cs">

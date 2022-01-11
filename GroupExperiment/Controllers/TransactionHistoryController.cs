@@ -27,7 +27,7 @@ namespace GroupExperiment
         {
             base.ViewDidLoad();
 
-            Title = "Tranactions";
+            Title = "Transactions";
 
             NavigationController.NavigationBarHidden = false;
             NavigationItem.HidesBackButton = true;
