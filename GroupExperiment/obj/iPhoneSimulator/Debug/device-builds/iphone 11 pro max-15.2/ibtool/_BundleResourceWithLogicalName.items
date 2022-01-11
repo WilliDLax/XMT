@@ -46,6 +46,16 @@
       <LogicalName>Main.storyboardc/voF-fN-otM-view-5h1-vj-5vC.nib</LogicalName>
       <OriginalItemSpec>obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro max-15.2/ibtool-link/Main.storyboardc</OriginalItemSpec>
     </_BundleResourceWithLogicalName>
+    <_BundleResourceWithLogicalName Include="obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro max-15.2/ibtool-link/Main.storyboardc/DQM-6c-kCy-view-y0E-kU-DRM.nib">
+      <Optimize>false</Optimize>
+      <LogicalName>Main.storyboardc/DQM-6c-kCy-view-y0E-kU-DRM.nib</LogicalName>
+      <OriginalItemSpec>obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro max-15.2/ibtool-link/Main.storyboardc</OriginalItemSpec>
+    </_BundleResourceWithLogicalName>
+    <_BundleResourceWithLogicalName Include="obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro max-15.2/ibtool-link/Main.storyboardc/UIViewController-DQM-6c-kCy.nib">
+      <Optimize>false</Optimize>
+      <LogicalName>Main.storyboardc/UIViewController-DQM-6c-kCy.nib</LogicalName>
+      <OriginalItemSpec>obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro max-15.2/ibtool-link/Main.storyboardc</OriginalItemSpec>
+    </_BundleResourceWithLogicalName>
     <_BundleResourceWithLogicalName Include="obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro max-15.2/ibtool-link/Main.storyboardc/2Q9-9j-5kS-view-Dfz-Su-Pwa.nib">
       <Optimize>false</Optimize>
       <LogicalName>Main.storyboardc/2Q9-9j-5kS-view-Dfz-Su-Pwa.nib</LogicalName>

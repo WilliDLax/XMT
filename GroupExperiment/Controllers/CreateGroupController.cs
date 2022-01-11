@@ -9,23 +9,15 @@ using GroupExperiment.Modules.Utils;
 using Newtonsoft.Json;
 using UIKit;
 
-//Commenting out old correct code to try new things
-
 namespace GroupExperiment
 {
 	public partial class CreateGroupController : UIViewController
 	{
-        //MyAlerts alerter = new MyAlerts();
-        //public string groupName;
-        //public List<Recipient> groupRecipients;
-
+        //to send selected group in segue
         public int indexNumber;
-
-        //List<BeneficiaryGroup> beneficiaryGroups;
 
         public CreateGroupController (IntPtr handle) : base (handle)
 		{
-            //beneficiaryGroups = new List<BeneficiaryGroup>();
 		}
 
         //reload table of saved beneficiary groups anytime screen shows
@@ -33,6 +25,7 @@ namespace GroupExperiment
         {
             base.ViewWillAppear(animated);
 
+            //check if there are already groups
             if(Commonclass.BeneficiaryGroups.Count != 0)
             {
                 groupsTable.Hidden = false;
@@ -72,7 +65,7 @@ namespace GroupExperiment
             {
                 if (String.IsNullOrWhiteSpace(MyUtils.alertController.TextFields[0].Text))
                 {
-                    MyUtils.ShowSimpleAlert("Behave yourself", "Group name cannot be empty", this);
+                    MyUtils.ShowSimpleAlert("Sorry", "Group name cannot be empty", this);
                 }
                 else
                 {
@@ -96,8 +89,6 @@ namespace GroupExperiment
                 var groupPage = segue.DestinationViewController as GroupController;
                 if(groupPage != null)
                 {
-                    //groupPage.groupName = groupName;
-                    //groupPage.groupRecipients = groupRecipients;
                     groupPage.indexNumber = indexNumber;
                 }
             }

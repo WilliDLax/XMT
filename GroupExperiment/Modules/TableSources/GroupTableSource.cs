@@ -73,8 +73,10 @@ namespace GroupExperiment.Modules
             {
                 tableItems.RemoveAt(indexPath.Section);
                 tableView.DeleteSections(NSIndexSet.FromIndex(indexPath.Section), UITableViewRowAnimation.Fade);
+
                 groupPage.UpdateRecipientCount();
                 groupPage.UpdateTotalAmount();
+
                 groupPage.recipientDTOList.RemoveAt(indexPath.Section);
             }
         }

@@ -16,7 +16,7 @@ namespace GroupExperiment
 {
 	public partial class LoginController : UIViewController
 	{
-        //global variables
+        //eye icons for password toggle
         UIImageView imageIcon = new UIImageView();
 
         //web service tools
@@ -30,6 +30,7 @@ namespace GroupExperiment
         public double accBalance;
 
         public string newEmail;
+        public string newPassword;
 
 
         public LoginController (IntPtr handle) : base (handle)
@@ -62,6 +63,10 @@ namespace GroupExperiment
             if (!string.IsNullOrEmpty(newEmail))
             {
                 emailTextField.Text = newEmail;
+            }
+            if (!string.IsNullOrEmpty(newPassword))
+            {
+                passwordTextField.Text = newPassword;
             }
 
             loginBtn.TouchUpInside += LoginBtn_TouchUpInside;
@@ -143,10 +148,13 @@ namespace GroupExperiment
             string url2 = "https://xmtapi.azurewebsites.net/customers/login";
 
             //api call usng httpClient
-            HttpResponseMessage response = await client.PostAsJsonAsync(url, user);
+            HttpResponseMessage response = await client.PostAsJsonAsync(url2, user);
 
             var responseContent = await response.Content.ReadAsStringAsync();
             Console.WriteLine(responseContent);
+
+            indicator.StopAnimating();
+            activityBackgroundView.Hidden = true;
 
             if (response.IsSuccessStatusCode)
             {
@@ -163,14 +171,11 @@ namespace GroupExperiment
                 NSUserDefaults.StandardUserDefaults.SetString(emailTextField.Text, "Usermail");
                 NSUserDefaults.StandardUserDefaults.SetString(passwordTextField.Text, "UserPass");
 
-                indicator.StopAnimating();
-                activityBackgroundView.Hidden = true;
                 PerformSegue("toDashboard", null);
             }
             else
             {
-                MyUtils.ShowSimpleAlert("Abeg getat!", "Ivalid Email or password!", this);
-                indicator.StopAnimating();
+                MyUtils.ShowSimpleAlert("Sorry", "Ivalid Email or password!", this);
             }
         }
     }

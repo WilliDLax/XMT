@@ -16,6 +16,7 @@ namespace GroupExperiment
 {
     public partial class GroupController : UIViewController
 	{
+        //will send in segue
         string numOfRecipients;
         double totalAmount = 0;
 
@@ -29,11 +30,15 @@ namespace GroupExperiment
 
         //make new pickerView and list of strings for it
         UIPickerView bankPicker = new UIPickerView();
+
         List<string> banks;
 
         public GroupController (IntPtr handle) : base (handle)
 		{
+            //list of banks gotten from api call on dashboard
             banks = Commonclass.Banks;
+
+            //if something went wrong with the call
             if(banks.Count == 0)
             {
                 banks = new List<string>
@@ -55,6 +60,15 @@ namespace GroupExperiment
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            //getting back added people in already existing group when page loads
+            if(Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count != 0)
+            {
+                foreach(Recipient recipient in Commonclass.BeneficiaryGroups[indexNumber].Recipients)
+                {
+                    recipientDTOList.Add(new RecipientDTO(recipient.AmountToRecieve, recipient.AccountNumber, recipient.Bank));
+                }
+            }
 
             //few setups
             Title = Commonclass.BeneficiaryGroups[indexNumber].GroupName;
@@ -142,7 +156,7 @@ namespace GroupExperiment
             else
             {
                 alertBackgroundView.Hidden = false;
-                UIView.Transition(alertView, 0.8f, UIViewAnimationOptions.TransitionCrossDissolve, () => { alertView.Hidden = false; }, null);
+                UIView.Transition(alertView, 0.5f, UIViewAnimationOptions.TransitionCrossDissolve, () => { alertView.Hidden = false; }, null);
             } 
         }
 
@@ -151,7 +165,16 @@ namespace GroupExperiment
         {
             numOfRecipients = "Recipients: " + Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count;
 
-            PerformSegue("toSummary", null);
+            if (Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count < 2)
+            {
+                MyUtils.ShowSimpleAlert("Single or no reciever", "Please add at least 2 recipients", this);
+            }
+            else
+            {
+                PerformSegue("toSummary", null);
+            }
+
+            //PerformSegue("toSummary", null);
         }
 
         //send transfer detals to summary page
@@ -187,15 +210,22 @@ namespace GroupExperiment
 
         public async Task VerifyRecipient()
         {
+            activityBackgroundView.Hidden = false;
+            indicator.Hidden = false;
+            indicator.StartAnimating();
+
             client = new HttpClient(MyUtils.GetInsecureHandler());
             UnverifiedRecipient recipient = new UnverifiedRecipient(bankTextField.Text, recipAcctTextField.Text);
 
             string url = "https://localhost:5001/Transaction/find_account";
             string url2 = "https://xmtapi.azurewebsites.net/Transaction/find_account";
 
-            HttpResponseMessage response = await client.PostAsJsonAsync(url,recipient);
+            HttpResponseMessage response = await client.PostAsJsonAsync(url2,recipient);
 
             var responseAsString = await response.Content.ReadAsStringAsync();
+
+            indicator.StopAnimating();
+            activityBackgroundView.Hidden = true;
 
             if (response.IsSuccessStatusCode)
             {
@@ -206,8 +236,9 @@ namespace GroupExperiment
                 string recipientName = nameDTO.CustomerName;
 
                 AddToRecipients( recipientName, bankTextField.Text, recipAcctTextField.Text, amountTextField.Text);
-                alertBackgroundView.Hidden = true;
+
                 alertView.Hidden = true;
+                alertBackgroundView.Hidden = true;
                 ClearTextFields();
             }
             else
@@ -257,6 +288,8 @@ namespace GroupExperiment
         }
     }
 
+
+    //DTOs for api call
     public class UnverifiedRecipient
     {
         public string Bank { get; set; }

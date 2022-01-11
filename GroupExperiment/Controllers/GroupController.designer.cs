@@ -13,6 +13,9 @@ namespace GroupExperiment
 	partial class GroupController
 	{
 		[Outlet]
+		UIKit.UIView activityBackgroundView { get; set; }
+
+		[Outlet]
 		UIKit.UIBarButtonItem addRecipientBtn { get; set; }
 
 		[Outlet]
@@ -35,6 +38,9 @@ namespace GroupExperiment
 
 		[Outlet]
 		UIKit.UITableView groupTableView { get; set; }
+
+		[Outlet]
+		UIKit.UIActivityIndicatorView indicator { get; set; }
 
 		[Outlet]
 		UIKit.UITextField recipAcctTextField { get; set; }
@@ -78,6 +84,11 @@ namespace GroupExperiment
 				bankTextField = null;
 			}
 
+			if (cancelAlertBtn != null) {
+				cancelAlertBtn.Dispose ();
+				cancelAlertBtn = null;
+			}
+
 			if (chooseFromBeneficiaryBtn != null) {
 				chooseFromBeneficiaryBtn.Dispose ();
 				chooseFromBeneficiaryBtn = null;
@@ -113,9 +124,14 @@ namespace GroupExperiment
 				verifyAddButton = null;
 			}
 
-			if (cancelAlertBtn != null) {
-				cancelAlertBtn.Dispose ();
-				cancelAlertBtn = null;
+			if (activityBackgroundView != null) {
+				activityBackgroundView.Dispose ();
+				activityBackgroundView = null;
+			}
+
+			if (indicator != null) {
+				indicator.Dispose ();
+				indicator = null;
 			}
 		}
 	}

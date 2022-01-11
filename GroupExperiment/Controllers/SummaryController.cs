@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CoreGraphics;
 using Foundation;
 using GroupExperiment.Modules;
 using GroupExperiment.Modules.Models;
@@ -24,7 +25,8 @@ namespace GroupExperiment
 
         public List<RecipientDTO> recipientDTOList = new List<RecipientDTO>();
 
-		public SummaryController (IntPtr handle) : base (handle)
+
+        public SummaryController (IntPtr handle) : base (handle)
 		{
 		}
 
@@ -33,6 +35,11 @@ namespace GroupExperiment
             base.ViewDidLoad();
 
             Title = "Summary";
+
+            NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, KeyboardWillMove);
+            NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, KeyboardWillMove);
+
+            MyUtils.ResignResponders(View);
 
             MyUtils.AddShadow(groupSummaryCard);
             MyUtils.AddShadow(senderSummaryCard);
@@ -62,6 +69,25 @@ namespace GroupExperiment
             pinTextField.EditingChanged += PinTextField_EditingChanged;
         }
 
+        public void KeyboardWillMove(NSNotification notification)
+        {
+            if (notification.Name == UIKeyboard.WillShowNotification)
+            {
+                var keyboard = UIKeyboard.FrameBeginFromNotification(notification);
+
+                CGRect frame = View.Frame;
+                frame.Y = -keyboard.Height/2;
+                View.Frame = frame;
+            }
+
+            if (notification.Name == UIKeyboard.WillHideNotification)
+            {
+                CGRect frame = View.Frame;
+                frame.Y = 0;
+                View.Frame = frame;
+            }
+        }
+
         private void PinTextField_EditingChanged(object sender, EventArgs e)
         {
             if (pinTextField.Text.Length == 4)
@@ -82,17 +108,28 @@ namespace GroupExperiment
 
         private void OkayBtn_TouchUpInside(object sender, EventArgs e)
         {
-            MakeTransfer().Wait(200);
+            if (string.IsNullOrWhiteSpace(pinTextField.Text) || pinTextField.Text.Length < 4)
+            {
+                MyUtils.ShowSimpleAlert("Invalid", "Input a valid pin", this);
+            }
+            else
+            {
+                MakeTransfer().Wait(200);
+            }
         }
 
         private void ConfirmBtn_TouchUpInside(object sender, EventArgs e)
         {
             enterPinBackgroundView.Hidden = false;
-            UIView.Transition(enterPinView, 0.8f, UIViewAnimationOptions.TransitionCrossDissolve, () => { enterPinView.Hidden = false; }, null);
+            UIView.Transition(enterPinView, 0.5f, UIViewAnimationOptions.TransitionCrossDissolve, () => { enterPinView.Hidden = false; }, null);
         }
 
         public async Task MakeTransfer()
         {
+            activityBackgroundView.Hidden = false;
+            indicator.Hidden = false;
+            indicator.StartAnimating();
+
             client = new HttpClient(MyUtils.GetInsecureHandler());
 
             string url = "https://localhost:5001/Transaction/make_transfer";
@@ -100,8 +137,11 @@ namespace GroupExperiment
 
             TransferDTO transfer = new TransferDTO(Commonclass.ActiveAccount.AccountNumber,pinTextField.Text, recipientDTOList.ToArray());
 
-            HttpResponseMessage response = await client.PostAsJsonAsync(url, transfer);
+            HttpResponseMessage response = await client.PostAsJsonAsync(url2, transfer);
             var responseString = await response.Content.ReadAsStringAsync();
+
+            indicator.StopAnimating();
+            activityBackgroundView.Hidden = true;
 
             if (response.IsSuccessStatusCode)
             {
@@ -116,6 +156,8 @@ namespace GroupExperiment
             {
                 Console.WriteLine("Transfer failed");
                 Console.WriteLine(responseString);
+
+                MyUtils.ShowSimpleAlert("Transaction failed", responseString, this);
 
                 HideViews();
             }

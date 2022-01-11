@@ -1,8 +1,36 @@
+Function=SystemNative_ConvertErrorPlatformToPal
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_ConvertErrorPalToPlatform
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_StrErrorR
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
 Function=SystemNative_GetNonCryptographicallySecureRandomBytes
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_GetReadDirRBufferSize
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_GetEGid
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_GetEUid
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_MkDir
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_Stat2
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_LStat2
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_Unlink
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_OpenDir
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_ReadDirR
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=SystemNative_CloseDir
 	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
 Function=xamarin_timezone_get_local_name
 	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
 Function=xamarin_timezone_get_data
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
+Function=xamarin_GetFolderPath
 	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
 Function=xamarin_log
 	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/mscorlib.dll
@@ -19,4 +47,28 @@ Function=xamarin_release_block_on_main_thread
 	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/Xamarin.iOS.dll
 Function=xamarin_get_block_descriptor
 	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/Xamarin.iOS.dll
+Function=NetSecurityNative_ReleaseGssBuffer
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_DisplayMinorStatus
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_DisplayMajorStatus
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_ImportUserName
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_ImportPrincipalName
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_ReleaseName
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_InitiateCredSpNego
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_InitiateCredWithPassword
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_ReleaseCred
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_InitSecContext
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=NetSecurityNative_DeleteSecContext
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
+Function=xamarin_start_wwan
+	/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhone/Debug/device-builds/iphone11.8-15.2/mtouch-cache/1-Link/System.dll
 Function=mono_pmip

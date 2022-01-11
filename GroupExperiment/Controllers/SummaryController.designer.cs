@@ -22,6 +22,9 @@ namespace GroupExperiment
 		UIKit.UILabel accTypeLabel { get; set; }
 
 		[Outlet]
+		UIKit.UIView activityBackgroundView { get; set; }
+
+		[Outlet]
 		UIKit.UIButton cancelPinBtn { get; set; }
 
 		[Outlet]
@@ -38,6 +41,9 @@ namespace GroupExperiment
 
 		[Outlet]
 		UIKit.UIView groupSummaryCard { get; set; }
+
+		[Outlet]
+		UIKit.UIActivityIndicatorView indicator { get; set; }
 
 		[Outlet]
 		UIKit.UIButton okayBtn { get; set; }
@@ -74,34 +80,19 @@ namespace GroupExperiment
 				accTypeLabel = null;
 			}
 
+			if (activityBackgroundView != null) {
+				activityBackgroundView.Dispose ();
+				activityBackgroundView = null;
+			}
+
+			if (cancelPinBtn != null) {
+				cancelPinBtn.Dispose ();
+				cancelPinBtn = null;
+			}
+
 			if (confirmBtn != null) {
 				confirmBtn.Dispose ();
 				confirmBtn = null;
-			}
-
-			if (groupNameLabel != null) {
-				groupNameLabel.Dispose ();
-				groupNameLabel = null;
-			}
-
-			if (groupSummaryCard != null) {
-				groupSummaryCard.Dispose ();
-				groupSummaryCard = null;
-			}
-
-			if (recipientsNumberLabel != null) {
-				recipientsNumberLabel.Dispose ();
-				recipientsNumberLabel = null;
-			}
-
-			if (senderSummaryCard != null) {
-				senderSummaryCard.Dispose ();
-				senderSummaryCard = null;
-			}
-
-			if (totalAmountLabel != null) {
-				totalAmountLabel.Dispose ();
-				totalAmountLabel = null;
 			}
 
 			if (enterPinBackgroundView != null) {
@@ -114,9 +105,19 @@ namespace GroupExperiment
 				enterPinView = null;
 			}
 
-			if (pinTextField != null) {
-				pinTextField.Dispose ();
-				pinTextField = null;
+			if (groupNameLabel != null) {
+				groupNameLabel.Dispose ();
+				groupNameLabel = null;
+			}
+
+			if (groupSummaryCard != null) {
+				groupSummaryCard.Dispose ();
+				groupSummaryCard = null;
+			}
+
+			if (indicator != null) {
+				indicator.Dispose ();
+				indicator = null;
 			}
 
 			if (okayBtn != null) {
@@ -124,14 +125,29 @@ namespace GroupExperiment
 				okayBtn = null;
 			}
 
-			if (cancelPinBtn != null) {
-				cancelPinBtn.Dispose ();
-				cancelPinBtn = null;
+			if (pinTextField != null) {
+				pinTextField.Dispose ();
+				pinTextField = null;
+			}
+
+			if (recipientsNumberLabel != null) {
+				recipientsNumberLabel.Dispose ();
+				recipientsNumberLabel = null;
 			}
 
 			if (remarkTextField != null) {
 				remarkTextField.Dispose ();
 				remarkTextField = null;
+			}
+
+			if (senderSummaryCard != null) {
+				senderSummaryCard.Dispose ();
+				senderSummaryCard = null;
+			}
+
+			if (totalAmountLabel != null) {
+				totalAmountLabel.Dispose ();
+				totalAmountLabel = null;
 			}
 		}
 	}

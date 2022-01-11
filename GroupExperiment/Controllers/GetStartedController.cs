@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CoreGraphics;
 using Foundation;
+using GroupExperiment.Modules.Models;
 using GroupExperiment.Modules.Utils;
 using Newtonsoft.Json;
 using UIKit;
@@ -18,15 +20,32 @@ namespace GroupExperiment
 		HttpClient client;
 
 		string newEmail;
+		string newPassword;
+
+		UIPickerView acctTypePicker = new UIPickerView();
+
+		List<string> accountTypes;
 
 		public GetStartedController (IntPtr handle) : base (handle)
 		{
-			
+			accountTypes = new List<string>
+			{
+				"Savings",
+				"Fixed",
+				"Current"
+			};
 		}
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+			NavigationController.NavigationBarHidden = false;
+
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, KeyboardWillMove);
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, KeyboardWillMove);
+
+			MyUtils.ResignResponders(View);
 
 			allFields = new List<UITextField>
 			{
@@ -47,37 +66,76 @@ namespace GroupExperiment
 				MyUtils.AddTextFieldShadow(field);
             }
 
-            createAccountBtn.TouchUpInside += CreateAccountBtn_TouchUpInside;
+			MyPickerModel pickerModel = new MyPickerModel(accountTypes);           //instantiate a pickermodel and use it for the pickerView
+			acctTypePicker.Model = pickerModel;
+
+			pickerModel.ValueChanged += (sender, e) =>								//set action for the event handler
+			{
+				accountTypeTextField.Text = pickerModel.SelectedValue;
+				View.EndEditing(true);
+			};
+
+			accountTypeTextField.InputView = acctTypePicker;
+
+			createAccountBtn.TouchUpInside += CreateAccountBtn_TouchUpInside;
         }
 
-        private void CreateAccountBtn_TouchUpInside(object sender, EventArgs e)
+		public void KeyboardWillMove(NSNotification notification)
+		{
+			if (notification.Name == UIKeyboard.WillShowNotification)
+			{
+				if(passwordTextField.IsFirstResponder || confirmPasswordTextField.IsFirstResponder || accountTypeTextField.IsFirstResponder || setPinTextField.IsFirstResponder)
+                {
+					var keyboard = UIKeyboard.FrameBeginFromNotification(notification);
+
+					CGRect frame = View.Frame;
+					frame.Y = -keyboard.Height;
+					View.Frame = frame;
+				}
+				
+			}
+
+			if (notification.Name == UIKeyboard.WillHideNotification)
+			{
+				CGRect frame = View.Frame;
+				frame.Y = 0;
+				View.Frame = frame;
+			}
+		}
+
+		private void CreateAccountBtn_TouchUpInside(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(firstNameTextField.Text) ||
-				string.IsNullOrWhiteSpace(lastNameTextField.Text) ||
-				string.IsNullOrWhiteSpace(addressTextField.Text) ||
-				string.IsNullOrWhiteSpace(phoneNumberTextField.Text) ||
-				string.IsNullOrWhiteSpace(emailTextField.Text) ||
-				string.IsNullOrWhiteSpace(passwordTextField.Text) ||
-				string.IsNullOrWhiteSpace(confirmPasswordTextField.Text) ||
-				string.IsNullOrWhiteSpace(accountTypeTextField.Text) ||
-				string.IsNullOrWhiteSpace(setPinTextField.Text))
+                string.IsNullOrWhiteSpace(lastNameTextField.Text) ||
+                string.IsNullOrWhiteSpace(addressTextField.Text) ||
+                string.IsNullOrWhiteSpace(phoneNumberTextField.Text) ||
+                string.IsNullOrWhiteSpace(emailTextField.Text) ||
+                string.IsNullOrWhiteSpace(passwordTextField.Text) ||
+                string.IsNullOrWhiteSpace(confirmPasswordTextField.Text) ||
+                string.IsNullOrWhiteSpace(accountTypeTextField.Text) ||
+                string.IsNullOrWhiteSpace(setPinTextField.Text))
             {
-				MyUtils.ShowSimpleAlert("Empty field(s)", "Fill all fields", this);
+                MyUtils.ShowSimpleAlert("Empty field(s)", "Fill all fields", this);
             }
-			else if (passwordTextField.Text != confirmPasswordTextField.Text)
+            else if (passwordTextField.Text != confirmPasswordTextField.Text)
             {
-				MyUtils.ShowSimpleAlert("Password error", "Password are not the same", this);
+                MyUtils.ShowSimpleAlert("Password error", "Password are not the same", this);
             }
             else
             {
-				CreateAccount().Wait(200);
-			}
+                CreateAccount().Wait(200);
+            }
         }
 
 		public async Task CreateAccount()
         {
+			activityBackgroundView.Hidden = false;
+			indicator.Hidden = false;
+			indicator.StartAnimating();
+
 			client = new HttpClient(MyUtils.GetInsecureHandler());
 			string url = "https://localhost:5001/Customers/register";
+			string url2 = "https://xmtapi.azurewebsites.net/Customers/register";
 
 			NewAccountDTO newAccount = new NewAccountDTO
 				(
@@ -92,15 +150,19 @@ namespace GroupExperiment
 				setPinTextField.Text
 				);
 
-			HttpResponseMessage response = await client.PostAsJsonAsync(url,newAccount);
+			HttpResponseMessage response = await client.PostAsJsonAsync(url2,newAccount);
 
 			string responseBody = await response.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
+			indicator.StopAnimating();
+			activityBackgroundView.Hidden = true;
+
+			if (response.IsSuccessStatusCode)
             {
 				Console.WriteLine(responseBody);
 				Customer customer = JsonConvert.DeserializeObject<Customer>(responseBody);
 				newEmail = customer.Email;
+				newPassword = customer.Password;
 
 				PerformSegue("toLogin", null);
             }
@@ -119,6 +181,7 @@ namespace GroupExperiment
             {
 				var loginScreen = segue.DestinationViewController as LoginController;
 				loginScreen.newEmail = newEmail;
+				loginScreen.newPassword = newPassword;
             }
         }
 

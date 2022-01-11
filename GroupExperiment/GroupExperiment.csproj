@@ -221,6 +221,37 @@
         <ImageAsset Include="Resources\Assets.xcassets\bell.imageset\bell%403x.png" />
         <ImageAsset Include="Resources\Assets.xcassets\bell.imageset\Contents.json" />
         <ImageAsset Include="Resources\Assets.xcassets\bell.imageset\bell%402x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-20%402x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-29.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-20%403x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-76.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-1024.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-40.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-40%403x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-40%402x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-76%402x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\Contents.json" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-29%403x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-60%402x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-20.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-83.5%402x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-60%403x.png" />
+        <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon.appiconset\loadlogo%403x-29%402x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-20%402x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-29.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-20%403x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-76.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-1024.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-40.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-40%403x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-40%402x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-76%402x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-29%403x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-60%402x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-20.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-83.5%402x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-60%403x.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\loadlogo%403x-29%402x.png" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
@@ -287,6 +318,16 @@
         <Compile Include="Controllers\GetStartedController.cs" />
         <Compile Include="Controllers\GetStartedController.designer.cs">
           <DependentUpon>GetStartedController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Controllers\TransactionHistoryController.cs" />
+        <Compile Include="Controllers\TransactionHistoryController.designer.cs">
+          <DependentUpon>TransactionHistoryController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Modules\Models\Transaction.cs" />
+        <Compile Include="Modules\TableSources\TransactionTableSource.cs" />
+        <Compile Include="ModelViews\CustomTransactionCell.cs" />
+        <Compile Include="ModelViews\CustomTransactionCell.designer.cs">
+          <DependentUpon>CustomTransactionCell.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

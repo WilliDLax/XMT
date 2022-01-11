@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CoreGraphics;
+using Foundation;
 using HealthKit;
 using UIKit;
 
@@ -35,6 +37,25 @@ namespace GroupExperiment.Modules.Utils
             var tapRecognizer = new UITapGestureRecognizer(() => { view.EndEditing(true); });
             tapRecognizer.CancelsTouchesInView = false;
             view.AddGestureRecognizer(tapRecognizer);
+        }
+
+        public static void KeyboardWillMove(NSNotification notification, UIView view)
+        {
+            if(notification.Name == UIKeyboard.WillShowNotification)
+            {
+                var keyboard = UIKeyboard.FrameBeginFromNotification(notification);
+
+                CGRect frame = view.Frame;
+                frame.Y = -keyboard.Height;
+                view.Frame = frame;
+            }
+
+            if (notification.Name == UIKeyboard.WillHideNotification)
+            {
+                CGRect frame = view.Frame;
+                frame.Y = 0;
+                view.Frame = frame;
+            }
         }
 
         //show different types of alerts

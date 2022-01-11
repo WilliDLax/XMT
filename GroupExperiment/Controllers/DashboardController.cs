@@ -16,6 +16,7 @@ namespace GroupExperiment
 		{
 		}
 
+        //gotten from segue
         public string userName;
         public string accType;
         public string accNumber;
@@ -35,6 +36,7 @@ namespace GroupExperiment
             accNumberLabel.Text = Commonclass.ActiveAccount.AccountNumber;
             accBalanceLabel.Text = "₦" + Commonclass.ActiveAccount.AccountBalance.ToString("N0");
 
+            //get list of banks in the background for later use
             GetBanks().Wait(200);
 
         }
@@ -53,7 +55,7 @@ namespace GroupExperiment
             string url = "https://localhost:5001/Bank/get_banks";
             string url2 = "https://xmtapi.azurewebsites.net/Bank/get_banks";
 
-            HttpResponseMessage response = await client.GetAsync(url);
+            HttpResponseMessage response = await client.GetAsync(url2);
 
             var responseAsString = await response.Content.ReadAsStringAsync();
 

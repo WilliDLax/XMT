@@ -16,6 +16,9 @@ namespace GroupExperiment
 		UIKit.UITextField accountTypeTextField { get; set; }
 
 		[Outlet]
+		UIKit.UIView activityBackgroundView { get; set; }
+
+		[Outlet]
 		UIKit.UITextField addressTextField { get; set; }
 
 		[Outlet]
@@ -31,6 +34,9 @@ namespace GroupExperiment
 		UIKit.UITextField firstNameTextField { get; set; }
 
 		[Outlet]
+		UIKit.UIActivityIndicatorView indicator { get; set; }
+
+		[Outlet]
 		UIKit.UITextField lastNameTextField { get; set; }
 
 		[Outlet]
@@ -44,6 +50,31 @@ namespace GroupExperiment
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (accountTypeTextField != null) {
+				accountTypeTextField.Dispose ();
+				accountTypeTextField = null;
+			}
+
+			if (addressTextField != null) {
+				addressTextField.Dispose ();
+				addressTextField = null;
+			}
+
+			if (confirmPasswordTextField != null) {
+				confirmPasswordTextField.Dispose ();
+				confirmPasswordTextField = null;
+			}
+
+			if (createAccountBtn != null) {
+				createAccountBtn.Dispose ();
+				createAccountBtn = null;
+			}
+
+			if (emailTextField != null) {
+				emailTextField.Dispose ();
+				emailTextField = null;
+			}
+
 			if (firstNameTextField != null) {
 				firstNameTextField.Dispose ();
 				firstNameTextField = null;
@@ -54,9 +85,9 @@ namespace GroupExperiment
 				lastNameTextField = null;
 			}
 
-			if (addressTextField != null) {
-				addressTextField.Dispose ();
-				addressTextField = null;
+			if (passwordTextField != null) {
+				passwordTextField.Dispose ();
+				passwordTextField = null;
 			}
 
 			if (phoneNumberTextField != null) {
@@ -64,34 +95,19 @@ namespace GroupExperiment
 				phoneNumberTextField = null;
 			}
 
-			if (emailTextField != null) {
-				emailTextField.Dispose ();
-				emailTextField = null;
-			}
-
-			if (passwordTextField != null) {
-				passwordTextField.Dispose ();
-				passwordTextField = null;
-			}
-
-			if (confirmPasswordTextField != null) {
-				confirmPasswordTextField.Dispose ();
-				confirmPasswordTextField = null;
-			}
-
-			if (accountTypeTextField != null) {
-				accountTypeTextField.Dispose ();
-				accountTypeTextField = null;
-			}
-
 			if (setPinTextField != null) {
 				setPinTextField.Dispose ();
 				setPinTextField = null;
 			}
 
-			if (createAccountBtn != null) {
-				createAccountBtn.Dispose ();
-				createAccountBtn = null;
+			if (activityBackgroundView != null) {
+				activityBackgroundView.Dispose ();
+				activityBackgroundView = null;
+			}
+
+			if (indicator != null) {
+				indicator.Dispose ();
+				indicator = null;
 			}
 		}
 	}

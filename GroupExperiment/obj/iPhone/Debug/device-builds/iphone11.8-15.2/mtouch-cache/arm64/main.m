@@ -11,6 +11,19 @@ extern void *mono_aot_module_GroupExperiment_info;
 extern void *mono_aot_module_mscorlib_info;
 extern void *mono_aot_module_Xamarin_iOS_info;
 extern void *mono_aot_module_System_info;
+extern void *mono_aot_module_Mono_Security_info;
+extern void *mono_aot_module_System_Xml_info;
+extern void *mono_aot_module_System_Numerics_info;
+extern void *mono_aot_module_System_Core_info;
+extern void *mono_aot_module_System_Net_Http_info;
+extern void *mono_aot_module_System_Net_Http_Formatting_info;
+extern void *mono_aot_module_System_Data_info;
+extern void *mono_aot_module_System_Runtime_Serialization_info;
+extern void *mono_aot_module_System_ServiceModel_Internals_info;
+extern void *mono_aot_module_System_Web_Services_info;
+extern void *mono_aot_module_System_Xml_Linq_info;
+extern void *mono_aot_module_Newtonsoft_Json_info;
+extern void *mono_aot_module_Newtonsoft_Json_Bson_info;
 
 void xamarin_register_modules_impl ()
 {
@@ -18,6 +31,19 @@ void xamarin_register_modules_impl ()
 	mono_aot_register_module (mono_aot_module_mscorlib_info);
 	mono_aot_register_module (mono_aot_module_Xamarin_iOS_info);
 	mono_aot_register_module (mono_aot_module_System_info);
+	mono_aot_register_module (mono_aot_module_Mono_Security_info);
+	mono_aot_register_module (mono_aot_module_System_Xml_info);
+	mono_aot_register_module (mono_aot_module_System_Numerics_info);
+	mono_aot_register_module (mono_aot_module_System_Core_info);
+	mono_aot_register_module (mono_aot_module_System_Net_Http_info);
+	mono_aot_register_module (mono_aot_module_System_Net_Http_Formatting_info);
+	mono_aot_register_module (mono_aot_module_System_Data_info);
+	mono_aot_register_module (mono_aot_module_System_Runtime_Serialization_info);
+	mono_aot_register_module (mono_aot_module_System_ServiceModel_Internals_info);
+	mono_aot_register_module (mono_aot_module_System_Web_Services_info);
+	mono_aot_register_module (mono_aot_module_System_Xml_Linq_info);
+	mono_aot_register_module (mono_aot_module_Newtonsoft_Json_info);
+	mono_aot_register_module (mono_aot_module_Newtonsoft_Json_Bson_info);
 
 }
 

@@ -27,6 +27,35 @@
 			<string>Inapplicable Content</string>
 		</dict>
 	</array>
+	<key>com.apple.actool.document.warnings</key>
+	<array>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-1024.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-20.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-20@2x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-20@3x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-29.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-29@2x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-29@3x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-40.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-40@2x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-40@3x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-60@2x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-60@3x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-76.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-76@2x.png]</string>
+				<string>./AppIcon.appiconset/(null)[2d][loadlogo@3x-83.5@2x.png]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/wemabank/Projects/GroupExperiment/GroupExperiment/obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro max-15.2/actool/cloned-assets/Resources/Assets.xcassets</string>
+			<key>message</key>
+			<string>The app icon set "AppIcon" has 15 unassigned children.</string>
+			<key>type</key>
+			<string>Ambiguous Content</string>
+		</dict>
+	</array>
 	<key>com.apple.actool.notices</key>
 	<array>
 		<dict>
