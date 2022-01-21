@@ -30,7 +30,6 @@ namespace GroupExperiment
         public double accBalance;
 
         public string newEmail;
-        public string newPassword;
 
 
         public LoginController (IntPtr handle) : base (handle)
@@ -54,19 +53,10 @@ namespace GroupExperiment
             {
                 emailTextField.Text = mail;
             }
-            string password = NSUserDefaults.StandardUserDefaults.StringForKey("UserPass");
-            if (!string.IsNullOrEmpty(password))
-            {
-                passwordTextField.Text = password;
-            }
 
             if (!string.IsNullOrEmpty(newEmail))
             {
                 emailTextField.Text = newEmail;
-            }
-            if (!string.IsNullOrEmpty(newPassword))
-            {
-                passwordTextField.Text = newPassword;
             }
 
             loginBtn.TouchUpInside += LoginBtn_TouchUpInside;
@@ -133,6 +123,7 @@ namespace GroupExperiment
             else
             {
                 CheckUser().Wait(200);
+                //PerformSegue("toDashboard", null);
             }
         }
 
@@ -144,20 +135,20 @@ namespace GroupExperiment
 
             UserLogin user = new UserLogin(emailTextField.Text,passwordTextField.Text);
 
-            string url = "https://localhost:5001/Customers/login";
-            string url2 = "https://xmtapi.azurewebsites.net/customers/login";
+            string url = "https://localhost:5001/Customer/login";
+            string url2 = "https://xmtapi.azurewebsites.net/customer/login";
 
             //api call usng httpClient
             HttpResponseMessage response = await client.PostAsJsonAsync(url2, user);
 
             var responseContent = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseContent);
 
             indicator.StopAnimating();
             activityBackgroundView.Hidden = true;
 
             if (response.IsSuccessStatusCode)
             {
+                Console.WriteLine(responseContent);
                 Customer customer = JsonConvert.DeserializeObject<Customer>(responseContent);
 
                 //for later use
@@ -169,13 +160,13 @@ namespace GroupExperiment
                 accNumber = customer.AccountNumber;
 
                 NSUserDefaults.StandardUserDefaults.SetString(emailTextField.Text, "Usermail");
-                NSUserDefaults.StandardUserDefaults.SetString(passwordTextField.Text, "UserPass");
 
                 PerformSegue("toDashboard", null);
             }
             else
             {
-                MyUtils.ShowSimpleAlert("Sorry", "Ivalid Email or password!", this);
+                Console.WriteLine(responseContent);
+                MyUtils.ShowSimpleAlert("Sorry", "Something went wrong", this);
             }
         }
     }

@@ -52,7 +52,7 @@ namespace GroupExperiment
             enterPinView.Layer.CornerRadius = 8;
             //senderSummaryCard.ClipsToBounds = true;
 
-            groupNameLabel.Text = groupName;
+            //groupNameLabel.Text = groupName;
             recipientsNumberLabel.Text = numOfRecipients;
             totalAmountLabel.Text = "₦" + totalAmount.ToString("N0");
 

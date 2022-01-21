@@ -20,7 +20,6 @@ namespace GroupExperiment
 		HttpClient client;
 
 		string newEmail;
-		string newPassword;
 
 		UIPickerView acctTypePicker = new UIPickerView();
 
@@ -134,8 +133,8 @@ namespace GroupExperiment
 			indicator.StartAnimating();
 
 			client = new HttpClient(MyUtils.GetInsecureHandler());
-			string url = "https://localhost:5001/Customers/register";
-			string url2 = "https://xmtapi.azurewebsites.net/Customers/register";
+			string url = "https://localhost:5001/Customer/register";
+			string url2 = "https://xmtapi.azurewebsites.net/Customer/register";
 
 			NewAccountDTO newAccount = new NewAccountDTO
 				(
@@ -162,7 +161,6 @@ namespace GroupExperiment
 				Console.WriteLine(responseBody);
 				Customer customer = JsonConvert.DeserializeObject<Customer>(responseBody);
 				newEmail = customer.Email;
-				newPassword = customer.Password;
 
 				PerformSegue("toLogin", null);
             }
@@ -181,7 +179,6 @@ namespace GroupExperiment
             {
 				var loginScreen = segue.DestinationViewController as LoginController;
 				loginScreen.newEmail = newEmail;
-				loginScreen.newPassword = newPassword;
             }
         }
 

@@ -13,53 +13,45 @@ namespace GroupExperiment.ModelViews
 	partial class CustomTransactionCell
 	{
 		[Outlet]
-		UIKit.UILabel amountLabel { get; set; }
+		UIKit.UILabel groupNameLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel dateLabel { get; set; }
+		UIKit.UILabel numOfRecipientsLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel recipientAcctLabel { get; set; }
+		UIKit.UILabel senderAccountNumLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel refIdLabel { get; set; }
+		UIKit.UILabel totalAmountLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel senderAcctLabel { get; set; }
-
-		[Outlet]
-		UIKit.UILabel transactionTypeLabel { get; set; }
+		UIKit.UILabel transactionTypelabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (amountLabel != null) {
-				amountLabel.Dispose ();
-				amountLabel = null;
+			if (groupNameLabel != null) {
+				groupNameLabel.Dispose ();
+				groupNameLabel = null;
 			}
 
-			if (recipientAcctLabel != null) {
-				recipientAcctLabel.Dispose ();
-				recipientAcctLabel = null;
+			if (totalAmountLabel != null) {
+				totalAmountLabel.Dispose ();
+				totalAmountLabel = null;
 			}
 
-			if (senderAcctLabel != null) {
-				senderAcctLabel.Dispose ();
-				senderAcctLabel = null;
+			if (numOfRecipientsLabel != null) {
+				numOfRecipientsLabel.Dispose ();
+				numOfRecipientsLabel = null;
 			}
 
-			if (transactionTypeLabel != null) {
-				transactionTypeLabel.Dispose ();
-				transactionTypeLabel = null;
+			if (transactionTypelabel != null) {
+				transactionTypelabel.Dispose ();
+				transactionTypelabel = null;
 			}
 
-			if (dateLabel != null) {
-				dateLabel.Dispose ();
-				dateLabel = null;
-			}
-
-			if (refIdLabel != null) {
-				refIdLabel.Dispose ();
-				refIdLabel = null;
+			if (senderAccountNumLabel != null) {
+				senderAccountNumLabel.Dispose ();
+				senderAccountNumLabel = null;
 			}
 		}
 	}

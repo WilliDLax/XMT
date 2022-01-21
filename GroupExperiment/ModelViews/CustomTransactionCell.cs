@@ -17,14 +17,20 @@ namespace GroupExperiment.ModelViews
             
         }
 
-        public void PopulateCell(double amount, string recipAcct, string senderAcct, string transactionType, string date, string refId)
+        public void PopulateCell(string groupTag, double totalAmount, int numOfRecipients, string transactionType, string senderAcct)
         {
-            amountLabel.Text = "₦" + amount.ToString("N0");
-            recipientAcctLabel.Text = recipAcct;
-            senderAcctLabel.Text = senderAcct;
-            transactionTypeLabel.Text = transactionType;
-            dateLabel.Text = DateTime.Parse(date).ToString("MM/dd/yyyy hh:mm tt");
-            refIdLabel.Text = refId;
+            if (string.IsNullOrEmpty(groupTag)) //can be null
+            {
+                groupNameLabel.Text = "XTransfer";
+            }
+            else
+            {
+                groupNameLabel.Text = groupTag; 
+            }
+            totalAmountLabel.Text = "₦" + totalAmount.ToString("N0");
+            numOfRecipientsLabel.Text = "" + numOfRecipients;
+            transactionTypelabel.Text = transactionType;
+            senderAccountNumLabel.Text = senderAcct;
         }
     }
 }

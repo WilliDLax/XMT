@@ -328,6 +328,16 @@
         <Compile Include="ModelViews\CustomTransactionCell.designer.cs">
           <DependentUpon>CustomTransactionCell.cs</DependentUpon>
         </Compile>
+        <Compile Include="Controllers\TransactionDetailController.cs" />
+        <Compile Include="Controllers\TransactionDetailController.designer.cs">
+          <DependentUpon>TransactionDetailController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="ModelViews\CustomDetailCell.cs" />
+        <Compile Include="ModelViews\CustomDetailCell.designer.cs">
+          <DependentUpon>CustomDetailCell.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Modules\TableSources\TransactionDetailTableSource.cs" />
+        <Compile Include="Modules\Models\GroupTransaction.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

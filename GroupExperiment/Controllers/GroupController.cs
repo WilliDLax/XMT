@@ -24,8 +24,9 @@ namespace GroupExperiment
 
         HttpClient client;
 
-        public int indexNumber = 0; //gotten from segue
+        //public int indexNumber = 0; //gotten from segue
 
+        public List<Recipient> recipients;
         public List<RecipientDTO> recipientDTOList; //to send in segue
 
         //make new pickerView and list of strings for it
@@ -55,6 +56,7 @@ namespace GroupExperiment
             }
 
             recipientDTOList = new List<RecipientDTO>();
+            recipients = new List<Recipient>();
         }
 
         public override void ViewDidLoad()
@@ -62,16 +64,18 @@ namespace GroupExperiment
             base.ViewDidLoad();
 
             //getting back added people in already existing group when page loads
-            if(Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count != 0)
-            {
-                foreach(Recipient recipient in Commonclass.BeneficiaryGroups[indexNumber].Recipients)
-                {
-                    recipientDTOList.Add(new RecipientDTO(recipient.AmountToRecieve, recipient.AccountNumber, recipient.Bank));
-                }
-            }
+            //if(Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count != 0)
+            //{
+            //    foreach(Recipient recipient in Commonclass.BeneficiaryGroups[indexNumber].Recipients)
+            //    {
+            //        recipientDTOList.Add(new RecipientDTO(recipient.AmountToRecieve, recipient.AccountNumber, recipient.Bank));
+            //    }
+            //}
 
             //few setups
-            Title = Commonclass.BeneficiaryGroups[indexNumber].GroupName;
+            //Title = Commonclass.BeneficiaryGroups[indexNumber].GroupName;
+            NavigationController.NavigationBarHidden = false;
+            Title = "Multiple Transfer";
             MyUtils.ResignResponders(View);
             MyUtils.AddTextFieldShadow(bankTextField);
             MyUtils.AddTextFieldShadow(recipAcctTextField);
@@ -84,7 +88,7 @@ namespace GroupExperiment
             UpdateTotalAmount();
 
             //set tableview source
-            groupTableView.Source = new GroupTableSource(Commonclass.BeneficiaryGroups[indexNumber].Recipients, this);
+            groupTableView.Source = new GroupTableSource(recipients, this);
 
             //setting things in the popup dialogue box
             alertView.Layer.CornerRadius = 8;
@@ -130,8 +134,12 @@ namespace GroupExperiment
 
         private void AmountTextField_EditingChanged(object sender, EventArgs e)
         {
-            double tempAmount = double.Parse(amountTextField.Text);
-            amountTextField.Text = tempAmount.ToString("N0");
+            double i = 0;
+            if(double.TryParse(amountTextField.Text,out i))
+            {
+                double tempAmount = double.Parse(amountTextField.Text);
+                amountTextField.Text = tempAmount.ToString("N0");
+            }
         }
 
         private void CancelAlertBtn_TouchUpInside(object sender, EventArgs e)
@@ -149,7 +157,7 @@ namespace GroupExperiment
         //show popup to add a new recipient to group
         private void AddRecipientBtn_Clicked(object sender, EventArgs e)
         {
-            if (Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count == 10)
+            if (recipients.Count == 10)
             {
                 MyUtils.ShowSimpleAlert("Group full", "You cannot have more than 10 recipients", this);
             }
@@ -163,18 +171,18 @@ namespace GroupExperiment
         //get number of recipients before going to summary page
         private void TransferBtn_TouchUpInside(object sender, EventArgs e)
         {
-            numOfRecipients = "Recipients: " + Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count;
+            //numOfRecipients = "Recipients: " + recipients.Count;
 
-            if (Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count < 2)
-            {
-                MyUtils.ShowSimpleAlert("Single or no reciever", "Please add at least 2 recipients", this);
-            }
-            else
-            {
-                PerformSegue("toSummary", null);
-            }
+            //if (recipients.Count < 2)
+            //{
+            //    MyUtils.ShowSimpleAlert("Single or no reciever", "Please add at least 2 recipients", this);
+            //}
+            //else
+            //{
+            //    PerformSegue("toSummary", null);
+            //}
 
-            //PerformSegue("toSummary", null);
+            PerformSegue("toSummary", null);
         }
 
         //send transfer detals to summary page
@@ -186,7 +194,7 @@ namespace GroupExperiment
                 var summaryPage = segue.DestinationViewController as SummaryController;
                 if(summaryPage != null)
                 {
-                    summaryPage.groupName = Commonclass.BeneficiaryGroups[indexNumber].GroupName;
+                    //summaryPage.groupName = Commonclass.BeneficiaryGroups[indexNumber].GroupName;
                     summaryPage.numOfRecipients = numOfRecipients;
                     summaryPage.totalAmount = totalAmount;
                     summaryPage.recipientDTOList = recipientDTOList;
@@ -200,7 +208,7 @@ namespace GroupExperiment
         {
             if (String.IsNullOrWhiteSpace(bankTextField.Text) || String.IsNullOrWhiteSpace(recipAcctTextField.Text) || String.IsNullOrWhiteSpace(amountTextField.Text))
             {
-                MyUtils.ShowSimpleAlert("Empty fields", "Behave yourself", this);
+                MyUtils.ShowSimpleAlert("Empty fields", "Please enter details", this);
             }
             else
             {
@@ -252,7 +260,7 @@ namespace GroupExperiment
         //updates number of recipients in the table
         public void UpdateRecipientCount()
         {
-            recipientCountLabel.Text = "Recipients: " + Commonclass.BeneficiaryGroups[indexNumber].Recipients.Count + "/10";
+            recipientCountLabel.Text = "Recipients: " + recipients.Count + "/10";
         }
 
         //calculates total amount and updates
@@ -260,7 +268,7 @@ namespace GroupExperiment
         {
             double total = 0;
 
-            foreach (Recipient recipient in Commonclass.BeneficiaryGroups[indexNumber].Recipients)
+            foreach (Recipient recipient in recipients)
             {
                 total += recipient.AmountToRecieve;
             }
@@ -273,7 +281,7 @@ namespace GroupExperiment
         //and updates the table
         private void AddToRecipients(string name, string bank, string accnumber, string amount)
         {
-            Commonclass.BeneficiaryGroups[indexNumber].Recipients.Add(new Recipient(name, bank, accnumber, double.Parse(amount)));
+            recipients.Add(new Recipient(name, bank, accnumber, double.Parse(amount)));
             recipientDTOList.Add(new RecipientDTO(double.Parse(amount), accnumber, bank));
             UpdateRecipientCount();
             UpdateTotalAmount();

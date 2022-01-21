@@ -15,7 +15,8 @@ namespace GroupExperiment
 {
 	public partial class TransactionHistoryController : UIViewController
 	{
-        List<Transaction> transactions = new List<Transaction>();
+        public List<GroupTransaction> transactions = new List<GroupTransaction>();
+        public int index;
 
         HttpClient client;
 
@@ -32,7 +33,7 @@ namespace GroupExperiment
             NavigationController.NavigationBarHidden = false;
             NavigationItem.HidesBackButton = true;
 
-            transactionTableView.Source = new TransactionTableSource(transactions);
+            transactionTableView.Source = new TransactionTableSource(transactions, this);
 
             GetTransactions().Wait(200);
         }
@@ -45,8 +46,8 @@ namespace GroupExperiment
 
             client = new HttpClient(MyUtils.GetInsecureHandler());
 
-            string url = "https://localhost:5001/Transaction/transaction_receipts?accountNumber=" + Commonclass.ActiveAccount.AccountNumber;
-            string url2 = "https://xmtapi.azurewebsites.net/Transaction/transaction_receipts?accountNumber=" + Commonclass.ActiveAccount.AccountNumber;
+            string url = "https://localhost:5001/Transaction/get-transaction-groups/" + Commonclass.ActiveAccount.AccountNumber;
+            string url2 = "https://xmtapi.azurewebsites.net/Transaction/get-transaction-groups/" + Commonclass.ActiveAccount.AccountNumber;
 
             HttpResponseMessage response = await client.GetAsync(url2);
 
@@ -58,9 +59,9 @@ namespace GroupExperiment
 
             if (response.IsSuccessStatusCode)
             {
-                Transaction[] gottenTransactions = JsonConvert.DeserializeObject<Transaction[]>(responseContent);
+                GroupTransaction[] gottenTransactions = JsonConvert.DeserializeObject<GroupTransaction[]>(responseContent);
 
-                foreach(Transaction transaction in gottenTransactions)
+                foreach(GroupTransaction transaction in gottenTransactions)
                 {
                     transactions.Add(transaction);
                 }
@@ -69,6 +70,18 @@ namespace GroupExperiment
             else
             {
                 Console.WriteLine("something went wrong");
+            }
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+
+            if(segue.Identifier == "toTransactionDetail")
+            {
+                var detailPage = segue.DestinationViewController as TransactionDetailController;
+
+                detailPage.transactionDetails = transactions[index].Transactions;
             }
         }
     }

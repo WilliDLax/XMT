@@ -80,18 +80,18 @@ namespace GroupExperiment
         }
 
         //send name of created group
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            base.PrepareForSegue(segue, sender);
+        //public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        //{
+        //    base.PrepareForSegue(segue, sender);
 
-            if(segue.Identifier == "toGroupController")
-            {
-                var groupPage = segue.DestinationViewController as GroupController;
-                if(groupPage != null)
-                {
-                    groupPage.indexNumber = indexNumber;
-                }
-            }
-        }
+        //    if(segue.Identifier == "toGroupController")
+        //    {
+        //        var groupPage = segue.DestinationViewController as GroupController;
+        //        if(groupPage != null)
+        //        {
+        //            groupPage.indexNumber = indexNumber;
+        //        }
+        //    }
+        //}
     }
 }

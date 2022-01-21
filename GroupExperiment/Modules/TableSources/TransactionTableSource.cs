@@ -9,11 +9,13 @@ namespace GroupExperiment.Modules.TableSources
 {
     public class TransactionTableSource : UITableViewSource
     {
-        List<Transaction> TableItems;
+        List<GroupTransaction> TableItems;
+        TransactionHistoryController HistoryController;
 
-        public TransactionTableSource(List<Transaction> tableItems)
+        public TransactionTableSource(List<GroupTransaction> tableItems, TransactionHistoryController historyController)
         {
-            this.TableItems = tableItems; 
+            this.TableItems = tableItems;
+            this.HistoryController = historyController;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -24,12 +26,11 @@ namespace GroupExperiment.Modules.TableSources
                 cell = new CustomTransactionCell();
             }
 
-            cell.PopulateCell(TableItems[indexPath.Row].TransactionAmount,
-                TableItems[indexPath.Row].ReceiverAccount,
-                TableItems[indexPath.Row].SenderAccount,
+            cell.PopulateCell(TableItems[indexPath.Row].GroupName,
+                TableItems[indexPath.Row].TotalAmount,
+                TableItems[indexPath.Row].NumberOfRecipients,
                 TableItems[indexPath.Row].TransactionType,
-                TableItems[indexPath.Row].TransactionDate,
-                TableItems[indexPath.Row].TransactionId);
+                TableItems[indexPath.Row].SenderAccount);
 
             return cell;
         }
@@ -41,12 +42,15 @@ namespace GroupExperiment.Modules.TableSources
 
         public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
         {
-            return 170f;
+            return 150f;
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             tableView.DeselectRow(indexPath, true);
+            HistoryController.index = indexPath.Row;
+            HistoryController.PerformSegue("toTransactionDetail", null);
+            
         }
     }
 }
