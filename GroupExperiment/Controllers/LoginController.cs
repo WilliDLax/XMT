@@ -135,8 +135,8 @@ namespace GroupExperiment
 
             UserLogin user = new UserLogin(emailTextField.Text,passwordTextField.Text);
 
-            string url = "https://localhost:5001/Customer/login";
-            string url2 = "https://xmtapi.azurewebsites.net/customer/login";
+            string url = "https://localhost:5001/Customers/login";
+            string url2 = "https://xmtapi.azurewebsites.net/customers/login";
 
             //api call usng httpClient
             HttpResponseMessage response = await client.PostAsJsonAsync(url2, user);
@@ -166,7 +166,7 @@ namespace GroupExperiment
             else
             {
                 Console.WriteLine(responseContent);
-                MyUtils.ShowSimpleAlert("Sorry", "Something went wrong", this);
+                MyUtils.ShowSimpleAlert("Sorry", responseContent, this);
             }
         }
     }

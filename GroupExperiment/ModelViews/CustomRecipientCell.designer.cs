@@ -13,6 +13,9 @@ namespace GroupExperiment
 	partial class CustomRecipientCell
 	{
 		[Outlet]
+		UIKit.UIButton editAmountBtn { get; set; }
+
+		[Outlet]
 		UIKit.UILabel recipAccNumLabel { get; set; }
 
 		[Outlet]
@@ -26,14 +29,14 @@ namespace GroupExperiment
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (recipNameLabel != null) {
-				recipNameLabel.Dispose ();
-				recipNameLabel = null;
-			}
-
 			if (recipAccNumLabel != null) {
 				recipAccNumLabel.Dispose ();
 				recipAccNumLabel = null;
+			}
+
+			if (recipAmountLabel != null) {
+				recipAmountLabel.Dispose ();
+				recipAmountLabel = null;
 			}
 
 			if (recipBankLabel != null) {
@@ -41,9 +44,14 @@ namespace GroupExperiment
 				recipBankLabel = null;
 			}
 
-			if (recipAmountLabel != null) {
-				recipAmountLabel.Dispose ();
-				recipAmountLabel = null;
+			if (recipNameLabel != null) {
+				recipNameLabel.Dispose ();
+				recipNameLabel = null;
+			}
+
+			if (editAmountBtn != null) {
+				editAmountBtn.Dispose ();
+				editAmountBtn = null;
 			}
 		}
 	}

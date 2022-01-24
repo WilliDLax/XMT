@@ -59,6 +59,11 @@ namespace GroupExperiment
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (activityBackgroundView != null) {
+				activityBackgroundView.Dispose ();
+				activityBackgroundView = null;
+			}
+
 			if (addRecipientBtn != null) {
 				addRecipientBtn.Dispose ();
 				addRecipientBtn = null;
@@ -99,6 +104,11 @@ namespace GroupExperiment
 				groupTableView = null;
 			}
 
+			if (indicator != null) {
+				indicator.Dispose ();
+				indicator = null;
+			}
+
 			if (recipAcctTextField != null) {
 				recipAcctTextField.Dispose ();
 				recipAcctTextField = null;
@@ -122,16 +132,6 @@ namespace GroupExperiment
 			if (verifyAddButton != null) {
 				verifyAddButton.Dispose ();
 				verifyAddButton = null;
-			}
-
-			if (activityBackgroundView != null) {
-				activityBackgroundView.Dispose ();
-				activityBackgroundView = null;
-			}
-
-			if (indicator != null) {
-				indicator.Dispose ();
-				indicator = null;
 			}
 		}
 	}

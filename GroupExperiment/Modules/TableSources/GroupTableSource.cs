@@ -28,6 +28,7 @@ namespace GroupExperiment.Modules
             }
 
             cell.Populate(tableItems[indexPath.Section].AccountName, tableItems[indexPath.Section].AccountNumber, tableItems[indexPath.Section].Bank, tableItems[indexPath.Section].AmountToRecieve);
+            
 
             return cell;
         }
@@ -62,7 +63,16 @@ namespace GroupExperiment.Modules
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             string name = tableItems[indexPath.Section].AccountName;
-            MyUtils.ShowSimpleAlert("Name", name, groupPage);
+            //MyUtils.ShowSimpleAlert("Name", name, groupPage);
+            CustomRecipientCell selectedCell = tableView.CellAt(indexPath) as CustomRecipientCell;
+
+            MyUtils.ShowAlertWithTextField("Edit Amount", "", groupPage, (UIAlertAction obj) =>
+            {
+                selectedCell.ChangeAmount(double.Parse(MyUtils.alertController.TextFields[0].Text));
+                tableItems[indexPath.Section].AmountToRecieve = double.Parse(MyUtils.alertController.TextFields[0].Text);
+                groupPage.recipientDTOList[indexPath.Section].TransactionAmount = double.Parse(MyUtils.alertController.TextFields[0].Text);
+                groupPage.UpdateTotalAmount();
+            });
 
             tableView.DeselectRow(indexPath, true);
         }

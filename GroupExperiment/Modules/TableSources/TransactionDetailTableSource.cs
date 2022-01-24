@@ -25,7 +25,8 @@ namespace GroupExperiment.Modules.TableSources
 
             cell.PopulateCell(TableItems[indexPath.Row].TransactionAmount,
                 TableItems[indexPath.Row].ReceiverAccount,
-                TableItems[indexPath.Row].TransactionType,
+                TableItems[indexPath.Row].Bank,
+                TableItems[indexPath.Row].Narration,
                 TableItems[indexPath.Row].TransactionDate,
                 TableItems[indexPath.Row].TransactionId
                 );
@@ -40,7 +41,7 @@ namespace GroupExperiment.Modules.TableSources
 
         public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
         {
-            return 150f;
+            return 165f;
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)

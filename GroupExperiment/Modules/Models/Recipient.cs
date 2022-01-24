@@ -24,6 +24,7 @@ namespace GroupExperiment.Modules.Models
         public double TransactionAmount { get; set; }
         public string ReceiverAccount { get; set; }
         public string Bank { get; set; }
+        public string Narration { get; set; }
 
         public RecipientDTO(double transactionAmount, string receiverAccount, string bank)
         {

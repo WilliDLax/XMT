@@ -122,6 +122,15 @@ namespace GroupExperiment
         {
             enterPinBackgroundView.Hidden = false;
             UIView.Transition(enterPinView, 0.5f, UIViewAnimationOptions.TransitionCrossDissolve, () => { enterPinView.Hidden = false; }, null);
+
+            if (!string.IsNullOrWhiteSpace(remarkTextField.Text))
+            {
+                foreach(RecipientDTO recipient in recipientDTOList)
+                {
+                    recipient.Narration = remarkTextField.Text;
+                    Console.WriteLine(recipient.ReceiverAccount + " " + recipient.Narration);
+                }
+            }
         }
 
         public async Task MakeTransfer()

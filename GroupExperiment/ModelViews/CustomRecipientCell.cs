@@ -27,5 +27,10 @@ namespace GroupExperiment
 			recipBankLabel.Text = recipbank;
 			recipAmountLabel.Text = "₦" + recipamount.ToString("N0");
         }
+
+		public void ChangeAmount(double newAmount)
+        {
+			recipAmountLabel.Text = "₦" + newAmount.ToString("N0");
+		}
 	}
 }

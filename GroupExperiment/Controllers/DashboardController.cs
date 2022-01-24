@@ -37,8 +37,10 @@ namespace GroupExperiment
             accBalanceLabel.Text = "₦" + Commonclass.ActiveAccount.AccountBalance.ToString("N0");
 
             //get list of banks in the background for later use
-            GetBanks().Wait(200);
-
+            if(Commonclass.Banks.Count == 0)
+            {
+                GetBanks().Wait(200);
+            }
         }
 
         public override void ViewWillAppear(bool animated)

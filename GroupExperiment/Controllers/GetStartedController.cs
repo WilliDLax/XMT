@@ -133,8 +133,8 @@ namespace GroupExperiment
 			indicator.StartAnimating();
 
 			client = new HttpClient(MyUtils.GetInsecureHandler());
-			string url = "https://localhost:5001/Customer/register";
-			string url2 = "https://xmtapi.azurewebsites.net/Customer/register";
+			string url = "https://localhost:5001/Customers/register";
+			string url2 = "https://xmtapi.azurewebsites.net/Customers/register";
 
 			NewAccountDTO newAccount = new NewAccountDTO
 				(

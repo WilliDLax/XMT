@@ -19,6 +19,9 @@ namespace GroupExperiment
 		UIKit.UILabel amountLabel { get; set; }
 
 		[Outlet]
+		UIKit.UILabel bankLabel { get; set; }
+
+		[Outlet]
 		UIKit.UILabel dateLabel { get; set; }
 
 		[Outlet]
@@ -39,19 +42,24 @@ namespace GroupExperiment
 				amountLabel = null;
 			}
 
-			if (narrationLabel != null) {
-				narrationLabel.Dispose ();
-				narrationLabel = null;
-			}
-
 			if (dateLabel != null) {
 				dateLabel.Dispose ();
 				dateLabel = null;
 			}
 
+			if (narrationLabel != null) {
+				narrationLabel.Dispose ();
+				narrationLabel = null;
+			}
+
 			if (refIdLabel != null) {
 				refIdLabel.Dispose ();
 				refIdLabel = null;
+			}
+
+			if (bankLabel != null) {
+				bankLabel.Dispose ();
+				bankLabel = null;
 			}
 		}
 	}

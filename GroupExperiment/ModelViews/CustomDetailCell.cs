@@ -18,10 +18,11 @@ namespace GroupExperiment
 		{
 		}
 
-		public void PopulateCell(double amount, string accountNum, string narration, string date, string refId)
+		public void PopulateCell(double amount, string accountNum, string bank, string narration, string date, string refId)
         {
 			amountLabel.Text = "₦" + amount.ToString("N0");
 			accountNumLabel.Text = accountNum;
+			bankLabel.Text = bank;
             if (string.IsNullOrEmpty(narration))
             {
 				narrationLabel.Text = "No narration";

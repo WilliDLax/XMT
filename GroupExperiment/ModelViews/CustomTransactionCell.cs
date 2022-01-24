@@ -19,9 +19,11 @@ namespace GroupExperiment.ModelViews
 
         public void PopulateCell(string groupTag, double totalAmount, int numOfRecipients, string transactionType, string senderAcct)
         {
+            Random random = new Random();
+
             if (string.IsNullOrEmpty(groupTag)) //can be null
             {
-                groupNameLabel.Text = "XTransfer";
+                groupNameLabel.Text = "XTransfer-" + random.Next(100,999);
             }
             else
             {

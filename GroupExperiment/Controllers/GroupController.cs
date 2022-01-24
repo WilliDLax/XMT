@@ -117,6 +117,11 @@ namespace GroupExperiment
 
             addRecipientBtn.Clicked += AddRecipientBtn_Clicked;
 
+            chooseFromBeneficiaryBtn.Clicked += (sender, e) =>
+            {
+                MyUtils.ShowSimpleAlert("No beneficiaries added", "You do not have any saved beneficiaries yet", this);
+            };
+
         }
 
         private void RecipAcctTextField_EditingChanged(object sender, EventArgs e)
@@ -171,18 +176,18 @@ namespace GroupExperiment
         //get number of recipients before going to summary page
         private void TransferBtn_TouchUpInside(object sender, EventArgs e)
         {
-            //numOfRecipients = "Recipients: " + recipients.Count;
+            numOfRecipients = "Recipients: " + recipients.Count;
 
-            //if (recipients.Count < 2)
-            //{
-            //    MyUtils.ShowSimpleAlert("Single or no reciever", "Please add at least 2 recipients", this);
-            //}
-            //else
-            //{
-            //    PerformSegue("toSummary", null);
-            //}
+            if (recipients.Count < 2)
+            {
+                MyUtils.ShowSimpleAlert("Single or no reciever", "Please add at least 2 recipients", this);
+            }
+            else
+            {
+                PerformSegue("toSummary", null);
+            }
 
-            PerformSegue("toSummary", null);
+            //PerformSegue("toSummary", null);
         }
 
         //send transfer detals to summary page
